@@ -4,7 +4,18 @@ class Solution:
         Do not return anything, modify matrix in-place instead.
         """
 
-        if len(matrix) == 1:
-            return
-
-        
+        n = len(matrix)
+        for row in range(math.ceil(n / 2)):
+            for col in range(int(n - n / 2)):
+                (
+                    matrix[row][col],
+                    matrix[~col][row],
+                    matrix[~row][~col],
+                    matrix[col][~row],
+                ) = (
+                    matrix[~col][row],
+                    matrix[~row][~col],
+                    matrix[col][~row],
+                    matrix[row][col],
+                )
+        return matrix
